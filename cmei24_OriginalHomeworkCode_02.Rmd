@@ -5,7 +5,7 @@ editor: visual
 output:
   prettydoc::html_pretty:
     theme: cayman
-    toc: true          # Add a table of contents
+    toc: true         
     toc_depth: 2
 ---
 
@@ -29,7 +29,7 @@ Plot the simulated results using hist() and use xlim() to set the horizontal lim
 
 I decided to answer the questions in the order I think felt more inuitive
 
-## **Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30**
+## Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
 
 We first need to create the distribution/dataset that the primatologist collected before plotting it.
 
@@ -42,7 +42,7 @@ titis_calls <- dpois(x = call_ranges, lambda = l)
 barplot(titis_calls, names.arg = call_ranges, space = 0, xlab = "Number of Calls per Day", ylab = "Pr(X = x)", main = "Probability Mass Function - Titis Calls")
 ```
 
-## **Simulate 104 results from this distribution:**
+## Simulate 104 results from this distribution:
 
 My initial attempt which resulted in a mistake. Why do you think this is the case? Why can't I sample from the original `titis-calls` collection?
 
@@ -70,7 +70,7 @@ hist(simulated_calls, breaks = 0:30, freq = TRUE, col = "lightblue",
      xlim = c(0, 30))
 ```
 
-# **Let's answer the probability questions now!**
+# Let's answer the probability questions now!
 
 ## What is the probability that she will hear more than 8 calls during any given session?
 

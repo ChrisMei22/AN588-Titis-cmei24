@@ -1,7 +1,6 @@
 ---
 title: "AN588 - Homework 2"
 author: "Christian Mei"
-format: html
 editor: visual
 output:
   prettydoc::html_pretty:
@@ -12,7 +11,7 @@ output:
 
 # Titis in the Mist...
 
-Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a **2 hour window from 5am to 7am**. Based on previous knowledge, she believes that the **mean number of calls she will hear in that time is exactly 15**. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a [2 hour window from 5am to 7am]{.underline}. Based on previous knowledge, she believes that the [mean number of calls she will hear in that time is exactly 15.]{.underline} Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
 
 What is the probability that she will hear more than 8 calls during any given session?
 
