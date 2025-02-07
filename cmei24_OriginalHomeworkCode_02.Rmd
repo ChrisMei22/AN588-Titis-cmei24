@@ -1,0 +1,102 @@
+---
+title: "AN588 - Homework 2"
+author: "Christian Mei"
+editor: visual
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: true          # Add a table of contents
+    toc_depth: 2
+---
+
+# Titis in the Mist...
+
+Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a [2 hour window from 5am to 7am]{.underline}. Based on previous knowledge, she believes that the [mean number of calls she will hear in that time is exactly 15.]{.underline} Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+What is the probability that she will hear more than 8 calls during any given session?
+
+What is the probability that she will hear no calls in a session?
+
+What is the probability that she will hear exactly 3 calls in a session?
+
+Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+# Answer Attempt
+
+I decided to answer the questions in the order I think felt more inuitive
+
+## **Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30**
+
+We first need to create the distribution/dataset that the primatologist collected before plotting it.
+
+```{r}
+call_ranges <- 0:30
+l = 15 # Poisson mean lambda based on mean number of calls
+titis_calls <- dpois(x = call_ranges, lambda = l)
+
+
+barplot(titis_calls, names.arg = call_ranges, space = 0, xlab = "Number of Calls per Day", ylab = "Pr(X = x)", main = "Probability Mass Function - Titis Calls")
+```
+
+## **Simulate 104 results from this distribution:**
+
+My initial attempt which resulted in a mistake. Why do you think this is the case? Why can't I sample from the original `titis-calls` collection?
+
+```{r}
+sim <- NULL  # sets up a dummy variable to hold our 10000 simulations
+n <- 104
+for (i in 1:length(titis_calls)) {
+    sim[i] <- mean(sample(titis_calls, n, replace = TRUE))
+}
+
+barplot(sim, names.arg = call_ranges, space = 0, xlab = "Number of Calls per Day", ylab = "Pr(X = x)", main = "Probability Mass Function - Titis Calls")
+
+
+```
+
+The problem above is that I am by sampling from `titis_calls` , I was sampling probability values and not data points (calls per day). Hence, this method is incorrect
+
+What the assignment was actually asking for was to sample from a Poisson distribution with similar values, e.g same lambda mean = 15.
+
+```{r}
+simulated_calls <- rpois(104, lambda = l)
+
+hist(simulated_calls, breaks = 0:30, freq = TRUE, col = "lightblue",
+     xlab = "Number of Calls per Day", main = "Simulated Titi Calls",
+     xlim = c(0, 30))
+```
+
+# **Let's answer the probability questions now!**
+
+## What is the probability that she will hear more than 8 calls during any given session?
+
+```{r}
+# ppois get equal or less than -> so we need to get the complement probability
+# This means 1 - P(x =< 8)
+more_than_8_calls <- 1 - ppois(8, l)
+more_than_8_calls
+```
+
+## What is the probability that she will hear no calls in a session?
+
+```{r}
+no_calls <- dpois(0, l)
+no_calls
+```
+
+## What is the probability that she will hear exactly 3 calls in a session?
+
+```{r}
+three_calls <- dpois(3, l)
+three_calls
+```
+
+# Issues Encountered
+
+1.  I initially misunderstood what the sampling simulation meant. I the output of a `dpois()` function were not data points but rather probabilities. However I decided to keep my mistake in the assignment answer just to remind me in the future
+2.  Understanding what the differences between `dpois()` , `ppois()` , and `rpois()`
+3.  Completed the initial assignment on Quarto but needed to convert to RMarkdown to apply the `cayman` package
