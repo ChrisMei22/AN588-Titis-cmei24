@@ -63,12 +63,22 @@ The problem above is that I am by sampling from `titis_calls` , I was sampling p
 What the assignment was actually asking for was to sample from a Poisson distribution with similar values, e.g same lambda mean = 15.
 
 ```{r}
+set.seed(1) # So that everytime I run rpois, I get the same set of random numbers
 simulated_calls <- rpois(104, lambda = l)
+simulated_calls
+```
 
-hist(simulated_calls, breaks = 0:30, freq = TRUE, col = "lightblue",
+## Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30.
+
+```{r}
+hist(simulated_calls, breaks = 0:30, freq = TRUE, col = "pink",
      xlab = "Number of Calls per Day", main = "Simulated Titi Calls",
      xlim = c(0, 30))
 ```
+
+## How does your histogram compare to the shape of the probability mass function you plotted above?
+
+The two plots look quite different! The probability mass function looks more like a perfect bell curve whereas my version of the simulated histogram almost shows to have a bimodal distribution (2 peaks). But this may be because I don't have enough data points. I think that if I have more than 104 samples, the data could look more like a normal distribution. We also need to keep in mind that these two graphs are showing very different things. The probability mass function graph plots the probabilities, not the individual data points (\# of calls).
 
 # Let's answer the probability questions now!
 
