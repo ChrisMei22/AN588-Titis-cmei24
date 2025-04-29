@@ -11,13 +11,7 @@ output:
 
 # Titis in the Mist...
 
-```{r fig.align='center', out.width='50%'}
-knitr::include_graphics("images/clipboard-2053021673.png")
-```
-
 Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a [2 hour window from 5am to 7am]{.underline}. Based on previous knowledge, she believes that the [mean number of calls she will hear in that time is exactly 15.]{.underline} Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
-
-**Questions**
 
 What is the probability that she will hear more than 8 calls during any given session?
 
@@ -95,13 +89,6 @@ The two plots look quite different! The probability mass function looks more lik
 # This means 1 - P(x =< 8)
 more_than_8_calls <- 1 - ppois(8, l)
 more_than_8_calls
-```
-
-We can also plot the cumulative distribution function (CDF) to see the value in graphically!
-
-```{r}
-barplot(1 - ppois(8:30, lambda = l), ylim = 0:1, names.arg = 8:30, xlab = "Calls Per Day",
-    ylab = "Pr(X > 8)", main = "Titi Calls Cumulative Probability")
 ```
 
 ## What is the probability that she will hear no calls in a session?
